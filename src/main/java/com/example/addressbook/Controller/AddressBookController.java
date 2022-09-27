@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Name;
 
+@RestController
 public class AddressBookController {
 
     @GetMapping("/hello")
@@ -12,28 +13,27 @@ public class AddressBookController {
         return "Hello From Bridgelabz";
     }
 
+    //UC2_UsingQuery
 
     @GetMapping(value = "/query")
-    public String hello(@RequestParam(value = "name") String name) {
+    public String Get(@RequestParam(value = "name") String name) {
         return "hello" + name;
     }
+
+
     @GetMapping(value = "/param/{name}")
     public String helloParam(@PathVariable String name) {
         return "hello" + name;
     }
 
-
     @PostMapping("/post")
     public String hello(@RequestBody AddressBookData addressBookData) {
-        return "hello" + addressBookData.getName() + " " + addressBookData.getCity();
+        return "hello" + addressBookData.getName() + addressBookData.getCity() + addressBookData.getCountry() + addressBookData.getEmail() + addressBookData.getZip() + addressBookData.getMessage();
     }
 
-    //UC5_PutMapping
 
     @PutMapping("/put/{firstName}")
-    public String hello(@PathVariable String Name, @RequestParam(value = "lastName") String City) {
-        return "hello" + Name + " " + City + " ";
+    public String hello(@PathVariable String country, @RequestParam(value = "lastName") String city) {
+        return "hello" + country + " " + city + " ";
     }
-
-
 }
